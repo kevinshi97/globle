@@ -1,9 +1,9 @@
 function Attempt(props: any) {
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="attempt">
+      <div>
         Attempt {props.index}
-      </header>
+      </div>
     </div>
   );
 }

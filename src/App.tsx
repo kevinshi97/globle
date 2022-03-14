@@ -1,53 +1,35 @@
-// import React from 'react';
+// import ReactTooltip from "react-tooltip";
+import React, { useState, useEffect } from "react";
+import Map from "./component/map/Map";
 import Attempt from './component/attempt/Attempt';
+import AnswerInput from "./component/answerInput/answerInput";
+
 import './App.css';
-import canadaCities from './data/canada/canadaCities.json';
-import usCities from './data/us/usCities.json';
-import worldCities from './data/world/worldCities.json';
+// import canadaCities from './data/cities/json/canadaCities.json';
+// import usCities from './data/cities/json/usCities.json';
+// import worldCities from './data/cities/json/worldCities.json';
 
 function App() {
-  const attempts = {
-    first: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-    second: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-    third: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-    fourth: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-    fifth: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-    sixth: {
-      city: '',
-      lat: '',
-      lng: '',
-      pop: ''
-    },
-  }
+  // const [countries, setCountries] = useState(['CA']);
+  const [attempts, setAttempts] = useState(
+    new Array(6).fill({
+      country: '',
+      distance: 0,
+      direction: '',
+    })
+  );
+  
+  useEffect(() => {
+    setAttempts([
+      {
+        country: 'CA',
+        distance: 0,
+        direction: '',
+      },
+      ...attempts.slice(1)
+    ]);
+  }, []); // Empty array ensures that effect is only run on mount
 
-  console.log(canadaCities);
-  console.log(usCities);
-  console.log(worldCities);
 
   return (
     <div className="App">
@@ -55,10 +37,13 @@ function App() {
         Globle
         Mr. Worldwide
 
-        {Object.keys(attempts).map((attempt, i) => {
-          console.log(attempt)
-          return <Attempt key={i} attempt={attempt} index={i} />
-        })}
+      <Map countries={attempts.map((attempt) => attempt.country)} />
+
+      {Object.keys(attempts).map((attempt, i) => {
+        return <Attempt key={i} attempt={attempt} index={i} />
+      })}
+        
+      <AnswerInput />
 
       </header>
     </div>
