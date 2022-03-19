@@ -1,6 +1,6 @@
 import Country from '../interface/country';
 
-let distance = function(country: Country, solution: Country, imperial = false) {
+const distance = function(country: Country, solution: Country, imperial = false) {
   const lat1 = parseFloat(country.latitude) * Math.PI / 180;
   const lon1 = parseFloat(country.longitude) * Math.PI / 180;
   const lat2 = parseFloat(solution.latitude) * Math.PI / 180;

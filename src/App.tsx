@@ -1,15 +1,17 @@
 // import ReactTooltip from "react-tooltip";
 import React, { useState, useEffect } from "react";
 import Map from "./component/map/Map";
-import Attempt from './component/attempt/Attempt';
-import AnswerInput from "./component/answerInput/answerInput";
+import AttemptDisplay from './component/attempt/AttemptDisplay';
+import SearchBar from "./component/searchBar/SearchBar";
 
+import Country from './interface/country';
+import Attempt from './interface/attempt';
 
-import solutionToday from "./util/solutionToday";
+import solutionToday from './util/solutionToday';
+import findCountry from "./util/findCountry";
+import distance from './util/distance';
+import direction from "./util/direction";
 
-import Country from "./interface/country";
-
-// css
 import './App.css';
 
 function App() {
@@ -18,10 +20,10 @@ function App() {
   const [solution, setSolution] = useState(solutionToday());
   const [attempts, setAttempts] = useState(
     new Array(6).fill({
-      country: '',
-      distance: 0,
-      direction: '',
-    })
+      country: {},
+      percentage: 0,
+      direction: 0,
+    } as Attempt)
   );
   
   useEffect(() => {
@@ -31,12 +33,14 @@ function App() {
       console.log(solution);
     }, 10000);
 
+    let mock = {
+      country: findCountry('CA'),
+      percentage: Math.round(100 - distance(findCountry('CA') ?? solution, solution) / 40075 * 100), //40075 is the distance around the earth
+      direction: Math.round(direction(findCountry('CA') ?? solution, solution))
+    } as Attempt
+
     setAttempts([
-      {
-        country: 'CA',
-        distance: 0,
-        direction: '',
-      },
+      mock,
       ...attempts.slice(1)
     ]);
 
@@ -53,13 +57,14 @@ function App() {
         Globle
         Mr. Worldwide
 
-      <Map countries={attempts.map((attempt) => attempt.country)} />
+      <Map countries={attempts.map((attempt) => attempt.country.country)} />
 
-      {Object.keys(attempts).map((attempt, i) => {
-        return <Attempt key={i} attempt={attempt} index={i} />
-      })}
+        {attempts.map((attempt, i) => {
+          console.log(attempt, findCountry('CA'), i);
+          return <AttemptDisplay key={i} index={i} attempt={attempt} />
+        })}
         
-      <AnswerInput />
+      <SearchBar />
 
       </header>
     </div>
