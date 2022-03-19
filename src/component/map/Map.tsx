@@ -18,9 +18,9 @@ const Map = ({ countries }: any) => {
             geographies.map(geo => {
                 // some territories, not countries, have an iso that is anempty string
                 const wasChosen = geo.properties.iso_3166_1_ && countries.includes(geo.properties.iso_3166_1_);
-                if (wasChosen) {
-                  console.log(geo.properties);
-                }
+                // if (wasChosen) {
+                //   console.log(geo.properties);
+                // }
                 return (
                   <Geography
                     key={geo.rsmKey}

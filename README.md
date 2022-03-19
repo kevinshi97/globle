@@ -10,6 +10,11 @@ Thanks to simplemaps
     - https://simplemaps.com/data/world-cities
 
 
+## Local Scripts
+
+- Run the scripts in the scripts folder locally with node
+- Run them from the root of the project
+
 ## Packages
 - [convert-csv-to-json](https://www.npmjs.com/package/convert-csv-to-json)
 

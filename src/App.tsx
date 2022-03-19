@@ -4,13 +4,18 @@ import Map from "./component/map/Map";
 import Attempt from './component/attempt/Attempt';
 import AnswerInput from "./component/answerInput/answerInput";
 
+
+import solutionToday from "./util/solutionToday";
+
+import Country from "./interface/country";
+
+// css
 import './App.css';
-// import canadaCities from './data/cities/json/canadaCities.json';
-// import usCities from './data/cities/json/usCities.json';
-// import worldCities from './data/cities/json/worldCities.json';
 
 function App() {
   // const [countries, setCountries] = useState(['CA']);
+  // const countries = _countries as Country[];
+  const [solution, setSolution] = useState(solutionToday());
   const [attempts, setAttempts] = useState(
     new Array(6).fill({
       country: '',
@@ -20,6 +25,12 @@ function App() {
   );
   
   useEffect(() => {
+    // request the solution every 10 seconds
+    const interval = setInterval(() => {
+      setSolution(solutionToday());
+      console.log(solution);
+    }, 10000);
+
     setAttempts([
       {
         country: 'CA',
@@ -28,6 +39,11 @@ function App() {
       },
       ...attempts.slice(1)
     ]);
+
+    return () => {
+      // unmount interval to prevent memory leak
+      clearInterval(interval);
+    }
   }, []); // Empty array ensures that effect is only run on mount
 
 
