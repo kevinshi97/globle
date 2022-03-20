@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/globle/static/css/main.073c9b0a.css",
-    "main.js": "/globle/static/js/main.222483da.js",
+    "main.js": "/globle/static/js/main.3c7cbbf9.js",
     "static/js/787.28cb0dcd.chunk.js": "/globle/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/globle/index.html",
     "main.073c9b0a.css.map": "/globle/static/css/main.073c9b0a.css.map",
-    "main.222483da.js.map": "/globle/static/js/main.222483da.js.map",
+    "main.3c7cbbf9.js.map": "/globle/static/js/main.3c7cbbf9.js.map",
     "787.28cb0dcd.chunk.js.map": "/globle/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.222483da.js"
+    "static/js/main.3c7cbbf9.js"
   ]
 }
